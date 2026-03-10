@@ -1,0 +1,238 @@
+:root {
+  --bg: #1a1a2e;
+  --card-bg: #16213e;
+  --display-bg: #0f3460;
+  --text: #e8e8e8;
+  --text-dim: #8a8a9a;
+  --btn-num: #2a2a4a;
+  --btn-num-hover: #3a3a5a;
+  --btn-op: #e67e22;
+  --btn-op-hover: #f39c12;
+  --btn-func: #3a3a5a;
+  --btn-func-hover: #4a4a6a;
+  --btn-eq: #e74c3c;
+  --btn-eq-hover: #c0392b;
+  --border-radius: 12px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.5rem;
+  max-width: 680px;
+  width: 100%;
+}
+
+/* Calculator Card */
+.calculator {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.calculator h1 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Display */
+.display {
+  background: var(--display-bg);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.display-expression {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  word-break: break-all;
+  text-align: right;
+  width: 100%;
+  min-height: 1.2em;
+}
+
+.display-result {
+  font-size: 2rem;
+  font-weight: 600;
+  word-break: break-all;
+  text-align: right;
+  width: 100%;
+  transition: color 0.15s;
+}
+
+.display-result.error {
+  color: #e74c3c;
+  font-size: 1rem;
+}
+
+/* Button Grid */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 1rem;
+  font-size: 1.15rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  color: var(--text);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn-num {
+  background: var(--btn-num);
+}
+.btn-num:hover { background: var(--btn-num-hover); }
+
+.btn-op {
+  background: var(--btn-op);
+  color: #fff;
+}
+.btn-op:hover { background: var(--btn-op-hover); }
+
+.btn-func {
+  background: var(--btn-func);
+}
+.btn-func:hover { background: var(--btn-func-hover); }
+
+.btn-eq {
+  background: var(--btn-eq);
+  color: #fff;
+}
+.btn-eq:hover { background: var(--btn-eq-hover); }
+
+.btn-wide {
+  grid-column: span 2;
+}
+
+/* History Panel */
+.history {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+}
+
+.history h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+
+.history-list {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.history-list::-webkit-scrollbar {
+  width: 4px;
+}
+.history-list::-webkit-scrollbar-thumb {
+  background: var(--btn-func);
+  border-radius: 2px;
+}
+
+.history-item {
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-bottom: 0.25rem;
+}
+
+.history-item:hover {
+  background: var(--btn-num);
+}
+
+.history-expr {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.history-result {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.history-empty {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.history-clear {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  background: var(--btn-func);
+  color: var(--text-dim);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.history-clear:hover {
+  background: var(--btn-func-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+
+  .history {
+    max-height: 200px;
+  }
+
+  .btn {
+    padding: 1.1rem;
+    font-size: 1.2rem;
+  }
+}
